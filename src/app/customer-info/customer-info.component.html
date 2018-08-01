@@ -1,0 +1,123 @@
+﻿<form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+  <div class="customheader">
+    <div class="customheaderleft">
+      <h2>Customer Information</h2>
+    </div>
+  </div>
+
+  <!--<div class="col-md-12 fontFamily" style="text-align: center">
+  <label class="fontSixeXLg">Customer Information</label>
+  </div>-->
+  <div class="col-md-12 fontFamily" style="padding-left:3em; margin-top:7em;">
+    <input type="radio" class="fontSixeXLg" name="customerAddEdit" (click)="onRadioClicked($event,form)" value="newCust" [checked]="newCustDiv"> Add
+    <input type="radio" class="fontSixeXLg" style="margin-left: 2em;" name="customerAddEdit" (click)="onRadioClicked($event,form)" value="EditCust" [checked]="!newCustDiv"> Edit
+  </div>
+
+  <div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="newCustDiv">
+    <div class="col-md-12">
+      <input type="radio" class="fontSixeXLg" name="customerAdd" value="addWaitlist" (click)="onRadioCustAddClicked($event)" checked> Add To Waitlist
+      <input type="radio" class="fontSixeXLg" name="customerAdd" style="margin-left: 2em;" value="makeOffer" (click)="onRadioCustAddClicked($event)"> Make An Offer
+    </div>
+
+    <div class="col-md-12" style="padding:1em;">
+      <div class="col-md-12" style="padding:1em;">
+        <select style="color:black;width: 190px;" [(ngModel)]="data.TruflUserID"  name="TruflUserID"  >
+          <option>--select--</option>
+          <option *ngFor="let customer of customer_details" [value]=customer.TruflUserID>{{customer.FULLNAME}}</option>
+
+        </select>
+
+        <label style="margin-left:3em;">Party Size: </label>
+        <input type="text" class="inputStyle" [(ngModel)]="data.PartySize" #partysize="ngModel" name="PartySize" #box (input)="update(box.value)" required />
+
+        <label *ngIf="partysize.invalid && (partysize.dirty || partysize.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+          <label *ngIf="partysize.errors.required ">
+            PartySize is required.
+          </label>
+        </label>
+
+      </div>
+      <div class="col-md-12" style="padding:1em;">
+        
+        <label style="margin-left: 1em;">Offer Amount: </label>
+        <input type="text" [attr.disabled]="addOfferAmnt" *ngIf="addOfferAmnt" class="inputStyle"  /> 
+        <input type="text" *ngIf="!addOfferAmnt" class="inputStyle" [(ngModel)]="data.OfferAmount"  name="OfferAmount"  />
+
+        <label style="margin-left: 1em;">Wait Time: </label>
+        <input type="text" class="inputStyle"  [(ngModel)]="data.Quoted"  name="Quoted" />
+
+
+      </div>
+
+      <div class="col-md-12" style="padding:0px;" *ngIf="enable_seated">
+        <div class="col-md-12" style="padding:0px;">
+          <input type="radio" class="fontSixeXLg" name="customerAdd" value="getTbl" (click)="onRadioCustAddClicked($event)" [checked]="edit_offerType===5" [disabled]="add_status"  > Get a Table Now
+        </div>
+        <div class="col-md-12" style="padding:1em;">
+          <div class="col-md-12" style="padding:1em;">
+            <label>Table Type: </label>
+            <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="TableType" name="TableType" />
+
+            <label style="margin-left: 2.5em;">Amount: </label>
+            <input type="text" [attr.disabled]="true" class="inputStyle" [(ngModel)]="edit_TableNowAmount" name="edit_TableNowAmount" />          
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+    <div class="col-md-11">
+      <button  type="submit" class="primary-btn" style="float: right;width: 110px;" > Save</button>
+    </div>
+  </div>
+
+
+  <div class="col-md-10 col-md-offset-1 fontFamily" style="background-color: #4f5879;padding: 2em;" *ngIf="!newCustDiv">
+    <div class="col-md-12">    
+      <select style="color:black;width: 190px;"   (change)="onChange($event.target.value)" >
+        <option>--select--</option>
+        <option *ngFor="let editcustomer of edit_customer"  [value]=editcustomer.BookingID >{{editcustomer.Fullname}}</option>
+      </select>
+
+      <label style="margin-left: 3em;">Party Size: </label>
+      <input type="text" class="inputStyle" [(ngModel)]="PartySize" name="PartySize" [attr.disabled]="true" />      
+    </div>
+
+
+    <div class="col-md-12" style="padding:1em;">
+      <div class="col-md-12">
+        <input type="radio" class="fontSixeXLg" name="customerEdit" value="makeOffer"     (click)="onRadioCustAddClicked($event)"  [checked]="edit_offerType===3" > Make An Offer
+      </div>
+
+      <div class="col-md-12" style="padding:1em;">
+        <div class="col-md-12" style="padding:1em;">
+          <label>Offer Amount: </label>
+          <input type="text" class="inputStyle"   [(ngModel)]="OfferAmount"  name="OfferAmount"  />
+
+          <label style="margin-left: 1em;">Wait Time: </label>
+          <input type="text" class="inputStyle"  [(ngModel)]="Quoted"  name="Quoted" />
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12"  *ngIf="enable_seated" >
+      <div class="col-md-12">
+        <input type="radio" class="fontSixeXLg" name="customerEdit" value="getTbl"  (click)="onRadioCustAddClicked($event)"  [checked]="edit_offerType===5"    [disabled]="edit_status"> Get a Table Now
+      </div>
+
+      <div class="col-md-12" style="padding:1em;">
+        <div class="col-md-12" style="padding:1em;">
+          <label>Table Type: </label>
+          <input type="text" [attr.disabled]="true" class="inputStyle"  [(ngModel)]="TableType"  name="TableType"  />
+
+          <label style="margin-left: 1em;">Amount: </label>
+          <input type="text" [attr.disabled]="true" class="inputStyle"  [(ngModel)]="edit_TableNowAmount" name="edit_TableNowAmount" />
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-11">
+      <button type="submit" class="primary-btn" style="float: right;width: 110px;" > Save</button>
+    </div>
+  </div>
+  </form>

@@ -1,0 +1,15 @@
+.available-error{
+  position:relative;
+}
+  .available-error .trungetseatednow {
+    position: absolute;
+    left: 0;
+    top: -28px;
+    display: block;
+    background: #fff;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    text-shadow: none;
+    font-family: helvetica, sans-serif;
+  }

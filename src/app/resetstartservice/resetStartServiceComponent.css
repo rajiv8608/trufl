@@ -1,0 +1,28 @@
+﻿
+div {
+  margin-top: 12em;
+}
+
+button {
+  padding: 5px 10px;
+  background: #c19c59;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-family: AvenirNextCondensed;
+  color: #fff;
+  text-align: center;
+  outline: none;
+  border-radius: 20px;
+  margin: 20px;
+  width: 20%;
+  margin-left: 40%;
+  margin-top: 9%;
+}
+
+label {
+  float: left;
+  width: 100%;
+  text-align: center;
+  font-size: 22px;
+  font-family: Avenir Next;
+}

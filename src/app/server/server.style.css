@@ -1,0 +1,12 @@
+.h4Style {
+  display: inherit;
+  color: #fff;
+  font-weight: bold;
+  font-size: 20px;
+}
+.tblMrgTop {
+  margin-top: 8%;  
+}
+.tblMrgTop thead th{
+  font-weight:bold;
+}

@@ -1,0 +1,80 @@
+﻿
+<div>
+    <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+        <div class="customheader">
+            <div class="customheaderleft">
+                <h2>Add A Reservation</h2>
+            </div>
+            <div class="customheaderright" style="padding-top:3%;">
+                <button type="submit" class="primary-btn btnSave" [disabled]="reserved" [ngClass]="{disabled : !isValid}">
+                    Save Reservation
+                </button>
+            </div>
+        </div>
+
+        <div class="col-md-12 mrgTop12" >
+            <div class="col-md-6">
+                <div class="col-md-8 col-md-offset-3 widthAuto">
+                    <p class="fontStyling">{{selectdate|date:'EEEE'}}, {{selectdate|date:'MMMM'}} {{selectdate|date:'d'}}</p>
+                    <br />
+                    <div class="date-select" role="application">
+                        <div class="popup-menu tn-date-selector-popup tn-date-selector-menu" id="tn_calendar" *ngIf="isActive">
+                            <div class="menu" tn-off-click="onOffClick_event();">
+                                <div class="tn-date-selector">
+                                    <div class="tn-datepicker-title"></div>
+                                    <div class="tn-datepicker-calender">
+                                        <div class="tn-datepicker-nav">
+                                            <button type="button" class="tn-datepicker-nav-button" (click)="prev()"
+                                                    name="previous" id="prev">
+                                            <img src="assets/images/left-arrow.png"/> </button>
+                                            <span class="month-label">{{month.format("MMMM YYYY")}}</span>
+                                            <button type="button" class="tn-datepicker-nav-button "
+                                                    (click)="next()" name="next" id="nxt">
+                                              <img src="assets/images/right-arrow.png"/>
+                                            </button>
+                                        </div>
+                                        <div class="tn-datepicker-row">
+                                            <span class="tn-datepicker-col text-center"
+                                                  *ngFor="let dayLabel of daysInWeek">
+                                                <span class="tn-datepicker-day-label" title="{{dayLabel.title}}">{{dayLabel.day}}</span>
+                                            </span>
+                                        </div>
+                                        <div class="tn-datepicker-row" *ngFor="let week of weeks">
+                                            <span class="tn-datepicker-col" *ngFor="let day of week.days">
+                                                <div tabindex="-1" class="tn-datepicker-day" (click)="onDayClick(day);" name="selected" [ngClass]="getDayCls(day,datesOfInterest)">
+                                                    <button type="button" [disabled]="Year_Change <currentYear || (Month_Change<currentMonth && Year_Change<=currentYear ) || (day.number<currentDay && Year_Change==currentYear && Month_Change==currentMonth) ||(day.number>=next_day && Year_Change==next_year && Month_Change>=next_month) ||(Year_Change==next_year && Month_Change>next_month) || Year_Change>next_year">{{day.number}}</button>
+                                                </div>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--calendar code end-->
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="col-md-10 col-md-offset-0">
+                    <span class="servicetime" style="background:none;border:none;">
+                        <input type="time" name="time" [(ngModel)]="data.time" #time="ngModel" (input)="checking(data.time)" required  >
+                    </span>
+                    <label class="mrgLeft11em" *ngIf="time.invalid && (time.dirty || time.touched || form.submitted)"  [ngStyle]="{'color': 'red'}">
+                        <label *ngIf="time.errors.required ">
+                            Please select time.
+                        </label>
+                    </label>
+                </div>
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </form>
+</div>
+
+<div class="col-md-12 bottombuttons">
+    <span class="spancloseIconStyle" (click)="cancel()">
+      <img src="assets/images/cross.png"  />
+    Cancel</span>
+</div>
+

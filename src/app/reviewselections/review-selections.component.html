@@ -1,0 +1,59 @@
+﻿<!--header-->
+<div class="customheader">
+
+  <div class="customheaderleft">
+    <h2>Review Selections</h2>
+  </div>
+  <div class="customheaderright">
+    <a (click)="back()" class="secondary-btn">
+      Back
+    </a>
+    <a (click)="next()" class="primary-btn">
+      Next
+    </a>
+  </div>
+
+</div>
+<!--main div -->
+<div class="col-md-12 reviewmain mrgTop8em">
+  <div class="row">
+    <div class="col-md-4">
+      <span class="fontStyle"> Guests can join the waitlist at:</span>
+      <span *ngFor="let restaurantwaitlistopen of RestaurantWaitListOpen" class="reviewtime">{{restaurantwaitlistopen.OpenTime}}</span>
+    </div>
+    <div class="col-md-4">
+      <span class="fontStyle">These servers are on the floor. </span>
+      <div class="selectstaff fw nomar">
+        <ul>
+          <li class="fw nomar revmar" *ngFor="let restaurantopensectionstaff of result;let i=index">
+            <a class="selected">
+              <img src="data:image/JPEG;base64,{{restaurantopensectionstaff.pic}}" alt=""/>
+              <span class="fontStyle">
+                                {{restaurantopensectionstaff.FullName}}
+                            </span>
+              <div *ngFor="let obj of restaurantopensectionstaff.seatNumbers;let i=index;"><h4
+                *ngIf="restaurantopensectionstaff.ActiveInd == 1" class="h4">
+                {{obj.StartTableNumber}}-{{obj.EndTableNumber}}</h4></div>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <span class="fontStyle"> These sections are closed.</span>
+
+      <div class="selectfloorReview fw nomar">
+        <ul class="mrgTop3em">
+          <li *ngFor="let closesections of RestaurantOpenSections; let i=index" class="fw  nomar revmar">
+            <a class="opacity05" [ngStyle]="{'background-image':'url('+imageIteration+closesections.FloorImage+')'}">
+              <h3>{{closesections.FloorName}}</h3>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--  <div *ngIf="OpenTimeLoader" class="ngLoader col-md-12">
+        <img class="loderStyle" src="assets/images/loader.gif" />
+      </div>-->
+  </div>
+</div>

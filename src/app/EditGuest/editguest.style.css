@@ -1,0 +1,85 @@
+
+.highlight {
+  border-bottom: 1px solid red !important;
+}
+
+.previous {
+  border-bottom: 1px solid #6a7989;
+}
+
+.input__label--haruki::after {
+  background: none !important;
+}
+
+.bottombuttons {
+  background: #1f2024;
+  padding-top: 25px;
+  padding-bottom: 25px;
+  position: fixed;
+  bottom: 0px;
+  right: 4em;
+}
+
+.spancloseIconStyle {
+  font-family: AvenirNextCondensed;
+  font-size: 22px;
+  color: #f7f7f7;
+  text-transform: uppercase;
+  margin-left: 0.4em;
+  float: right;
+}
+
+.spancloseIconStyle img {
+  width: 14px;
+}
+
+.mrgTop8em {
+  margin-top: 8em;
+}
+
+.edit {
+  font-family: Avenir Next, Regular !important;
+  font-size: 10px !important;
+}
+
+.edittext {
+  font-family: Avenir Next, Medium;
+  font-size: 15px;
+}
+
+/*.buttondisable{
+  cursor:default !important;
+  float: left;
+  width: auto;
+  padding: 5px 10px;
+  background: white;
+  border: 1px solid #c19c59;
+  font-size: 18px;
+  font-family: AvenirNextCondensed-Medium;
+  color: gray;
+  text-align: center;
+  outline: none;
+  border-radius: 20px;
+  margin: 20px;
+
+}*/
+.buttondisable:hover, .buttondisable:focus, .buttondisable:hover, .buttondisable:focus {
+  color: gray;
+  cursor: default !important;
+}
+
+/*changed css*/
+.default {
+  background: white;
+  cursor: default;
+  color: gray;
+}
+
+.changcolor:hover {
+  cursor: pointer !important;
+}
+
+/*changed css end*/
+
+/*added css*/
+#report{margin-left:5em}

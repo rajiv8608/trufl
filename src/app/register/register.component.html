@@ -1,0 +1,84 @@
+﻿<div class="loginbg">
+  <div class="col-md-3 logincontiner">
+    <div class="loginmain">
+      <div class="login-top">
+        <img alt="" src="assets/images/logo.png"/>
+
+        <h1 class="text-center">Resturant App </h1>
+      </div>
+      <form class="logininner" (ngSubmit)="signUp()" #registerForm="ngForm">
+        <div class="logcheck">
+                    <span class="pull-left">
+                        <input type="radio" checked name="userType" value="RA"
+                               [(ngModel)]="user.LoggedInUserType"> <label> Resturant Admin</label>
+                    </span> <span class="pull-right">
+                        <input type="radio" name="userType" value="TA" [(ngModel)]="user.LoggedInUserType"> <label>Trufl Admin</label>
+                    </span>
+        </div>
+        <div class="form-group ffw">
+          <input type="text" class="form-control" id="fullName" required pattern="[a-zA-Z][a-zA-Z ]+" name="fullName"
+                 [(ngModel)]="user.FullName" placeholder="Enter your full name" #name="ngModel"/>
+          <div *ngIf="name.invalid && (name.dirty || name.touched)" class="alert alert-danger">
+            <div *ngIf="name.errors.required">Name is required.</div>
+            <div *ngIf="name.errors.pattern">Only alphabets allowed</div>
+          </div>
+          <span class="help-block"></span>
+        </div>
+        <div class="form-group ffw">
+          <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="user.Email" required
+                 placeholder="Enter your email address" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                 #username="ngModel"/>
+          <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+            <div *ngIf="username.errors.required">UserName is required.</div>
+            <div *ngIf="username.errors.pattern">UserName format should be
+              <small><b>joe@abc.com</b></small>
+            </div>
+          </div>
+          <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password" required
+                 placeholder="Enter password" #password="ngModel"/>
+          <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+            <div *ngIf="password.errors.required">Password is required.</div>
+          </div>
+          <span class="help-block"></span>
+        </div>
+
+        <div class="form-group">
+          <input type="password" class="form-control" id="confirmPassword" validateEqual="password"
+                 name="confirmPassword" [(ngModel)]="user.confirmPassword" required placeholder="Re-enter password"
+                 #confirmPassword="ngModel"/>
+
+          <div *ngIf="confirmPassword.invalid && (confirmPassword.dirty || confirmPassword.touched)"
+               class="alert alert-danger">
+            Passwords did not match
+          </div>
+          <span class="help-block"></span>
+        </div>
+        <div class="logcheck no-mar">
+                    <span class="pull-left fw">
+                        <input type="checkbox" checked> <label> By Checking in, you agree to Trufl's Terms of Service, Cookie Policy, Privacy Policy and Content Policies</label>
+                    </span>
+        </div>
+        <div class="login-btn">
+          <button type="reset" class="secondary-btn lgbtn">Clear</button>
+          <button type="submit" class="primary-btn pull-right lgbtn" [disabled]="!registerForm.form.valid">Register
+          </button>
+        </div>
+
+        <div class="createaccount">
+          <h2>
+            Already have a account ?
+            <a [routerLink]="['/login']">Login</a>
+          </h2>
+        </div>
+
+      </form>
+    </div>
+
+    <div class="terms">
+    </div>
+  </div>
+</div>

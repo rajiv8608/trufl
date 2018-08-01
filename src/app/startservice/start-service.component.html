@@ -1,0 +1,20 @@
+<div class="customheader">
+
+    <div class="customheaderleft">
+        <h2>Start Service</h2>
+    </div>
+    <div class="customheaderright">
+        <a class="secondary-btn">
+            Back
+        </a>
+        <a (click)="next()" class="primary-btn">
+            Next
+        </a>
+    </div>
+</div>
+<div class="col-md-12 servicesmain mrgTop6em">
+    <span class="servicetext">How early can guests join the waitlist? </span>
+    <span  class="servicetime"> <input type="time" name="time" (click)="get();showErr = false"  [(ngModel)]="time"> </span>
+    <span class="startserviceErrTxt" *ngIf="showErr"> Please Enter valid time.</span>
+</div>
+

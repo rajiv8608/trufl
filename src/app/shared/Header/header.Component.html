@@ -1,0 +1,49 @@
+<div class="col-md-12 customheaderUL">
+  <div class="col-sm-4">
+    <div class="accordion">
+      <div>
+        <ul class="mrgBottom0PaddTop2">
+          <li>
+            <label for="group-1" class="mrtBottom0Width100">
+
+              <a class="sub-menu fontSixeXLg">{{restaurantName}}, {{userName}}</a>
+              <span class="ddArrow" *ngIf="isRestorantName" (click)="isOpen=!isOpen">
+                <!--<img src="assets/images/down-arrow.png" *ngIf="!isOpen"/>
+              <img src="assets/images/up-arrow.png" *ngIf="isOpen"/>-->
+                <span class="icon-trufl-arrowdown" *ngIf="!isOpen"></span>
+                <span class="icon-trufl-arrowup" *ngIf="isOpen"></span>
+              </span>
+            </label>
+            <ul class="group-list" *ngIf="isOpen">
+              <li class="group-list-li " (click)="myprofile()" [ngClass]="{'activeLi':isLiactive1}">
+                <a class="sub-menuLi">
+                  My Profile
+                </a>
+              </li>
+              <li class="group-list-li" (click)="switchUser()" [ngClass]="{'activeLi':isLiactive}">
+                <a class="sub-menuLi">
+                  Switch User
+                </a>
+              </li>
+              <li class="group-list-li" (click)="signOut()" [ngClass]="{'activeLi':isLiSignOut}">
+                <a class="sub-menuLi">Sign Out</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+    <div class="col-sm-8 customheaderrightUL">
+        <ul class="mrgLeft">
+            <li *ngFor="let header of headers let i=index" class="TopOptionsUL">
+                <a *ngIf="header.isShow" [routerLink]="[header.route]" [routerLinkActive]="['active']">{{header.name}}</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="scrollTop" id="scroll" style="position:fixed;bottom:10px;right: 10px;z-index:999;display:none;">
+    <a href="javascript:void(0)" (click)="scrollTop()"> <img src="assets/images/scroll-to-top.png" /></a>
+</div>

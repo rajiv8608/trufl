@@ -1,0 +1,34 @@
+<!--header-->
+<shared-header></shared-header>
+
+
+
+<div class="col-md-12 col-sm-12 snapmain"  id="Byserverdiv">
+  <table class="table table-responsive tblMrgTop">
+    <thead>
+      <tr>
+        <th class="thWidth20">SERVER</th>
+        <th class="alignCenter thWidth15">TOTAL AVAILABLE</th>
+        <th class="alignCenter thWidth15">TOTAL SEATED</th>
+        <th class="alignCenter thWidth15">CHECKS DROPPED</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let list of servers_Data">
+        <td>
+          <a>
+            <img class="opacityUnset" src="data:image/JPEG;base64,{{list.pic}}" alt="" />
+            <h4 class="h4Style">
+              {{list.HostessName}}
+            </h4>
+          </a>
+        </td>
+        <td class="alignCenter nOFontStyle">{{list.TotalAvailable}}</td>
+        <td class="alignCenter nOFontStyle">{{list.TotalSeated}}</td>
+        <td class="alignCenter nOFontStyle">{{list.ChecksDropped}}</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</div> 

@@ -1,0 +1,58 @@
+
+.error_class {
+  width: 96% !important;
+  margin:0 !important;
+}
+  .error_class label{
+    margin: 0;
+    font-size: 11px;
+    padding-left: 7px;
+    font-family: Helvetica, sans-serif;
+    color: red;
+}
+
+#image_id {
+  float: right;
+  margin-top: 14px
+}
+
+.input__label--haruki::after {
+  background: none !important;
+}
+
+.border_change {
+  border-bottom: 1px solid red !important;
+}
+
+.border_default {
+  border-bottom: 1px solid #6a7989;
+}
+
+.input__label--haruki {
+    top:-15px;
+    /*font-size:13px !important;*/
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  #image_id {
+    float: right;
+    margin-top: -47px;
+  }
+}
+
+.default {
+  cursor: default;
+  /*background: white;  
+  color: gray;*/
+}
+
+.changcolor:hover {
+  cursor: pointer !important;
+}
+
+/*.highlight1 {
+  border-bottom: 1px solid red !important;
+}
+.previous1 {
+  border-bottom: 1px solid #6a7989;
+}*/

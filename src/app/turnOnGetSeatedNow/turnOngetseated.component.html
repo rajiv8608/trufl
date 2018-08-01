@@ -1,0 +1,96 @@
+<!--button-->
+<div class="turnOnBtnDiv">
+  <button class="primary-btn2" (click)="turngetseated()">Turn On Get Seated Now</button>
+
+</div>
+<!-- main div -->
+<div class="row bottomMainDiv col-md-12" *ngIf="isGetSeated">
+  <div class="col-md-1">
+    <label class="getSeated">Get Seated</label>
+  </div>
+  <div class="col-md-9" *ngIf="!isSubmit || show_error_priceoutofrange">
+    <div class="col-sm-12">
+      <div class="col-sm-7 noPad">
+        <label class="lblSyle">Table Size</label>
+        <div class="col-sm-12 tblsizeDiv" id="tblSizeDiv">
+          <span class="noBox squreBox" *ngFor="let _tabletypes of tabletype;let i=index;"[ngClass]="_tabletypes.TableType === getseatedinfo[0].TableType ? 'ActiveTable' : ''">
+          <a class="tblNo" (click)="tabletypes(_tabletypes,i)">{{_tabletypes.TableType}}</a></span>
+
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <label class="lblSyle">Price</label>
+        <div class="priceDiv mrfLeft26 available-error">
+          <span class="clacPrice"><a href="javascript:void(0)" (click)="subPrice()"><img src="assets/images/ic_minus.png"></a></span>
+          <span>
+            <input type="text" *ngFor="let _getseatednow of getseatedinfo" class="priceSpan squreBox tblNo" name="price"
+                   [(ngModel)]="_getseatednow.OfferAmount" (ngModelChange)="updatePrice(_getseatednow.OfferAmount)" />
+          </span>
+          <span class="clacPrice"><a href="javascript:void(0)" (click)="addPrice()"><img src="assets/images/ic_add.png"></a></span>          
+
+          <label *ngIf="show_error_priceoutofrange" class="trungetseatednow">
+            Price should not exceed than the minimum amount added in setting.
+          </label>
+        </div>
+      </div>
+      <div class="col-sm-2 ">
+        <label class="lblSyle">Available</label>
+        <div class="tblsizeDiv mrgTop0 available-error" *ngFor="let _getseatednows of getseatedinfo">
+          <input type="text" class="noBox squreBox mrgTop0 available tblNo" name="available"
+                 [(ngModel)]="_getseatednows.NumberOfTables" value="{{_getseatednows.TableTypeDesc}}"
+                 (ngModelChange)="updateAvailable(_getseatednows.NumberOfTables)"/>
+
+
+          <label *ngIf="showerror && !show_error_priceoutofrange" class="trungetseatednow">
+            Exceed Available range.
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-2 no-pad-right" *ngIf="!isSubmit && !showerror">
+    <button class="primary-btn2 tblsizeDiv btnSubmit" (click)="submit()" [disabled]="showerror">Submit</button>
+    <span class="crossIconSeatGuest" (click)="closeTurngetseated()">
+      <a  href="javascript:void(0)">
+        <span  class="icon-trufl-close"></span>
+      </a>
+    </span>
+  </div>
+  </div>
+  <!-- verification of submited data -->
+<div class="row bottomMainDiv col-md-12" *ngIf="(isenable === true ||  isSubmit == true)
+    && !show_error_priceoutofrange && !showerror  ">
+  <div class="col-sm-9">
+    <div class="col-sm-8 mrglft">
+      <div class="col-sm-3 noPad">
+        <label>Table Size</label>
+        <div class="col-sm-12 tblsizeDiv" id="tblSizeDiv">
+          <span class="noBox squreBox ActiveTable tblNo">{{seatedobject.TableType}}</span>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <label>Price</label>
+        <div class="tblsizeDiv">
+          <span class="priceSpan squreBox tblNo">{{seatedobject.Amount}}</span>
+        </div>
+      </div>
+      <div class="col-sm-3">
+        <label>Available</label>
+        <div class="tblsizeDiv">
+          <span class="noBox squreBox tblNo">{{seatedobject.NumberOfTables}}</span>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+  <div class="col-md-3 mrgTop18" *ngIf="isenable === true || isSubmit == true">
+    <a href="javascript:void(0)" class="pull-right cancelBtn">
+      <span (click)="cancel()">
+        <span class="icon-trufl-close">
+      </span> Close</span>
+    </a>
+  </div>
+
+</div>

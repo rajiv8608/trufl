@@ -1,0 +1,97 @@
+<shared-header></shared-header>
+<div class="col-md-12 mrgTop6em" id="snapshotHeader">
+
+  <div class="col-md-12 tblMrgBottom" id="ByTablediv">
+    <div class="col-md-12 padLeft7">
+      <div class="col-sm-2 paddingLftBtm" *ngFor="let tblList of TableWiseList let i=index">
+        <div (click)="arrFalse(i)" [attr.class]="className[i]" [ngClass]="{'divCol2StyleDrop':isDrop[i]}"
+             [ngStyle]="style[tblList.HostessID]">
+          <div class="imgDivHeight" *ngIf="tblList.TableType ==2">
+            <img src="assets/images/Group-794.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
+            <!--<span *ngIf="tblList.TableNumber <= 99"
+  [ngClass]="{'tblNoSpan':tblList.TableNumber<10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==4">
+            <img src="assets/images/Group-804.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
+            <!--<span *ngIf="tblList.TableNumber <= 99"
+                  [ngClass]="{'tblNoSpan':tblList.TableNumber <10,'tblNoSpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==6">
+            <img src="assets/images/Group-806.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
+            <!--<span *ngIf="tblList.TableNumber <= 99"
+                  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
+          </div>
+          <div class="imgDivHeight" *ngIf="tblList.TableType==8">
+            <img src="assets/images/Group-817.png" />
+            <span class="seatedNumber">{{tblList.TableNumber}}</span> <!--*ngIf="tblList.TableNumber > 99"-->
+            <!--<span *ngIf="tblList.TableNumber <= 99"
+                  [ngClass]="{'top68SpanTblNo0To9':tblList.TableNumber<10,'top68SpanTblNo10':tblList.TableNumber > 9}">{{tblList.TableNumber}}</span>-->
+          </div>
+          <div class="padtop41">
+            <p class="mrg0 pEllipsis">{{tblList.FloorName}}</p>
+            <p class="padLeft15 fontweightBold">{{tblList.HostessName}}</p>
+          </div>
+        </div>
+        <div *ngIf="isDrop[i]" class="dropdiv" [ngStyle]="style[tblList.HostessID]">
+          <ul class="mrgTop8">
+            <li class="padTobBtm padLeft15" [ngClass]="{'activeLi': switchUser}"
+                (click)="switchtblModal(tblList.TableNumber,i,template)" data-toggle="modal"
+                data-target="#switchServerModal">
+              <a>
+                Switch Server
+              </a>
+            </li>
+            <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': checkDrop}"
+                (click)="checkDroped(tblList.TableNumber,i)">
+              <a>
+                Check Dropped
+              </a>
+            </li>
+            <li class="padTobBtm padLeft15" *ngIf="tblList.TableStatus" [ngClass]="{'activeLi': emptyTbl}"
+                (click)="emptyTable(tblList.TableNumber,i)">
+              <a>
+                Empty Table
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+
+  </div>
+</div>
+<!--<turnOngetseated></turnOngetseated>-->
+<!--Switch server Modal-->
+<ng-template #template class="modal fade">
+  <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
+    <!-- Modal content-->
+    <div class="modal-content modalBgColoor fontColor modalwidth">
+      <div class="modal-header">
+        <h3 class="pull-left">Switch Server</h3>
+        <button type="button" class="close pull-right" (click)="dismissmodal()">
+          <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
+          <span class="icon-trufl-close closeIconStyle"></span>
+        </button>
+        <div class="clearfix"></div>
+      </div>
+      <div class="modal-body modalBody">
+        <div class="switchUserDiv col-md-12">
+          <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
+            <a (click)="switchServer(item.TruflUserID)">
+              <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
+              <h3>
+                {{item.FullName}}
+              </h3>
+            </a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>

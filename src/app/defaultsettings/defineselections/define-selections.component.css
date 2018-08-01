@@ -1,0 +1,151 @@
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRightBig {
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
+}
+
+#profileSection {
+  /*height: 100vh;*/
+  background: #394165;
+  position: fixed;
+  right: 0px;
+  top:92px;
+  bottom:0px;
+  overflow-y: auto;
+  width: 300px;
+  z-index: 9999;
+}
+
+.closeIconStyle {
+  float: right;
+  width: 13px;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.slideform label {
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  /*color: #fff;*/
+}
+
+.slideform input[type=text] {
+  float: left !important;
+  width: 100% !important;
+  padding: 5px !important;
+  height: 30px !important;
+  /*background: #4f5879 !important;
+  color: #fff !important;
+  border: #4f5879 solid 1px !important;*/
+}
+
+/*.color {
+  color: red !important;
+}*/
+
+.name {
+  font-family: AvenirNextCondensed;
+  font-size: 28px;
+  font-weight: bold;
+  /*color: #ffffff;*/
+  padding-top: 6%;
+}
+
+.lblstyle {
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  /*color: #fff;*/
+  font-family: Avenir Next;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  left: 9.7em !important;
+  top: 0.5em;
+  width: 36px;
+  height: 15px;
+}
+
+/*.h4 {
+  color: white;
+}*/

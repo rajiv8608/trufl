@@ -1,0 +1,8 @@
+<div class="wrapper" id="myId" [ngClass]="[restaurantTheme == 'dark' ? 'wrapper dark' : 'wrapper light']">
+  <app-loader-component></app-loader-component>
+  <!--<router-outlet (ColorChanged)="ColorChangedHandler($event)"></router-outlet>-->
+  <!--<themeSettings (ColorChanged)="ColorChangedHandler($event)"></themeSettings>-->
+  <router-outlet (ColorChanged)="ColorChangedHandler($event)"></router-outlet>
+
+</div>
+

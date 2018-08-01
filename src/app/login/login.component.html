@@ -1,0 +1,175 @@
+<div class="loginbg">
+  <div class="col-md-3 logincontiner">
+    <div class="loginmain">
+      <div class="login-top">
+        <img alt="" draggable="false" src="assets/images/logo.png"/>
+
+        <h1 class="text-center">Restaurant App </h1>
+      </div>
+      <!-- Login Form-->
+      <form class="logininner" #loginForm="ngForm" (ngSubmit)="loginForm.form.valid && signIn()" *ngIf="showlogin">
+        <div id="login">
+          <div class="logcheck">
+                        <span class="pull-left">
+                            <input type="radio" name="userType" value="RA" [(ngModel)]="user.usertype"
+                                   [checked]="user.usertype === 'RA'"> <label> Restaurant Staff</label>
+                        </span> <span class="pull-right">
+                            <input type="radio" name="userType" value="TA" [(ngModel)]="user.usertype"> <label>Trufl Admin</label>
+                        </span>
+          </div>
+          <div class="form-group ffw">
+            <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="user.emailid" required
+                   placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                   #username="ngModel"/>
+            <div *ngIf="username.invalid && (username.dirty || username.touched)" class="alert alert-danger">
+              <div *ngIf="username.errors.required">UserName is required.</div>
+              <div *ngIf="username.errors.pattern">EmailId format should be
+                <small><b>joe@abc.com</b></small>
+              </div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="password" name="password" [(ngModel)]="user.password"
+                   required placeholder="Enter password" #password="ngModel"/>
+            <div *ngIf="password.invalid && (password.dirty || password.touched)" class="alert alert-danger">
+              <div *ngIf="password.errors.required">Password is required.</div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+
+          <div class="errormsg" *ngIf="!loginForm.form.valid">
+
+            <span class="help-block"></span>
+          </div>
+
+          <div class="fp text-right">
+            <a (click)="forgotPasswordShow()">
+              forgot password ?
+            </a>
+
+
+          </div>
+          <div class="login-btn">
+            <button type="submit" class="primary-btn lgbtn pull-right">Sign In</button>
+          </div>
+        </div>
+      </form>
+
+      <!-- ForgotPassword Form-->
+      <form class="logininner" *ngIf="showForgotPassword" #forgotForm="ngForm">
+
+        <div id="ForgotPassword">
+
+          <h3>Forgot Password </h3>
+
+          <div class="form-group ffw">
+
+            <input type="text" class="form-control" id="userName" name="userName" [(ngModel)]="email" required
+                   placeholder="Enter your username or email" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                   #userName="ngModel"/>
+            <div [hidden]="userName.valid || userName.pristine" class="alert alert-danger">
+              <div [hidden]="!userName.hasError('required')">Email is required</div>
+              <div [hidden]="!userName.hasError('pattern')">Email format should be
+                <small><b>joe@abc.com</b></small>
+              </div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+
+          <div class="login-btn">
+            <button type="reset" class="secondary-btn lgbtn">Clear</button>
+            <button type="submit" (click)="forgotPasswordImpl()" [disabled]="!forgotForm.form.valid"
+                    class="primary-btn pull-right lgbtn">submit
+            </button>
+          </div>
+        </div>
+      </form>
+      <form class="logininner" *ngIf="showResetPassword">
+        <div id="ResetPassword">
+
+          <h3 style="color:black"> Check your email</h3>
+          <p style="color:black">
+            You will receive an email containing instructions on how to create a new password.
+          </p>
+          <div class="fp text-right">
+            <a (click)=" showOnlyLogin()">
+              login?
+            </a>
+            <a (click)=" showLogin()">
+              ResetPassword?
+            </a>
+          </div>
+        </div>
+      </form>
+
+      <!-- ResetPassword Form-->
+      <form class="logininner" #resetForm="ngForm" *ngIf="showReset" >
+
+        <div id="ResetPassword">
+
+          <h3 style="color:black">Reset Password </h3>
+          <div class="form-group">
+            <input type="text" class="form-control" id="mail" name="usermail" [(ngModel)]="reset.UserEmail" required
+                   placeholder="Enter mail " [disabled]="true" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$"
+                   #usermail="ngModel"/>
+            <div *ngIf="usermail.invalid && (usermail.dirty || usermail.touched)" class="alert alert-danger">
+              <div *ngIf="usermail.errors.required">Mail is required.</div>
+              <div *ngIf="usermail.errors.pattern">usermail format should be
+                <small><b>joe@abc.com</b></small>
+              </div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+          <div class="form-group">
+            <input type="password" class="form-control" id="mailPassword" name="mailPassword"
+                   [(ngModel)]="reset.LoginPassword" required placeholder="Enter current password "
+                   #mailPassword="ngModel"/>
+            <div *ngIf="mailPassword.invalid && (mailPassword.dirty || mailPassword.touched)"
+                 class="alert alert-danger">
+              <div *ngIf="mailPassword.errors.required">Password is required.</div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="newPassword" name="newPassword"
+                   [(ngModel)]="reset.NewLoginPassword" required placeholder="Enter new password"
+                   #newPassword="ngModel"/>
+
+            <div *ngIf="newPassword.invalid && (newPassword.dirty || newPassword.touched)" class="alert alert-danger">
+              <div *ngIf="newPassword.errors.required">Password is required.</div>
+            </div>
+            <span class="help-block"></span>
+          </div>
+
+
+          <div class="form-group">
+            <input type="password" class="form-control" id="confirmPassword"
+                    
+                   name="confirmPassword" [(ngModel)]="reset.confirmPassword" required placeholder="Re-enter password"
+                   #confirmPassword="ngModel"/>
+
+            <div *ngIf="!(reset.confirmPassword==reset.NewLoginPassword)"
+                 class="alert alert-danger">
+              Passwords did not match
+            </div>
+            <span class="help-block"></span>
+          </div>
+
+          <div class="login-btn">
+            <button type="reset" class="secondary-btn lgbtn">Clear</button>
+            <button type="submit" class="primary-btn pull-right lgbtn" (click)="resetPasswordImpl()">Reset</button>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <div class="terms" *ngIf="showlogin">
+      By logging in, you agree to Trufl's Terms of Service, Cookie Policy, Privacy Policy and Content Policies
+    </div>
+
+
+  </div>
+</div>

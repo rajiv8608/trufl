@@ -1,0 +1,222 @@
+/*!
+ * animate.css -http://daneden.me/animate
+ * Version - 3.5.1
+ * Licensed under the MIT license - http://opensource.org/licenses/MIT
+ *
+ * Copyright (c) 2016 Daniel Eden
+ */
+.modal-content.bgtrans {
+  background-color: transparent !important;
+}
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.closeIconStyle {
+  float: right;
+  width: 13px;
+  margin-top: 1em;
+  cursor: pointer;
+}
+
+.padlft {
+  padding-left: 8%;
+}
+
+.blur {
+  opacity: 0.4;
+}
+
+@-webkit-keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(100%, 0, 0);
+    transform: translate3d(100%, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRight {
+  -webkit-animation-name: fadeInRight;
+  animation-name: fadeInRight;
+}
+
+@-webkit-keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInRightBig {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(2000px, 0, 0);
+    transform: translate3d(2000px, 0, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+.fadeInRightBig {
+  -webkit-animation-name: fadeInRightBig;
+  animation-name: fadeInRightBig;
+}
+
+.name {
+  font-family: AvenirNextCondensed;
+  font-size: 28px;
+  font-weight: bold;
+  color: #ffffff;
+  padding-top: 3%;
+}
+
+#profileSection {
+  /*height: 100%;*/
+  /*min-height: calc(100vh - 100px);*/
+  background: #394165;
+  position: fixed;
+  right: 0px;
+  top:92px;
+  bottom:0px;
+  overflow-x: auto;
+  width: 300px;
+  /*z-index: 9999;*/
+}
+
+/*.divProfileSection {
+  position: fixed;
+  padding-left: 0px;
+  margin-right: 1em;
+}*/
+
+span.fontStyle {
+  display: list-item;
+  word-break: break-all;
+}
+
+.slideform label {
+  float: left;
+  width: 100%;
+  margin: 0 0 5px 0;
+  /*color: #fff;*/
+  font-family: Avenir Next;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.slideform select {
+  float: left;
+  width: 100%;
+  padding: 5px;
+  height: 34px;
+  background: #4f5879;
+  /*color: #fff;
+  border: #4f5879 solid 1px;*/
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  left: 8.4em;
+  top: 0.5em;
+  width: 36px;
+  height: 15px;
+}
+
+#serverCheckInOutModal select {
+  /*background-color: #1f2025;*/
+  width: 100%;
+}
+
+#serverCheckInOutModal .modal-header, #serverCheckInOutModal .modal-footer {
+  border: none !important;
+}
+
+#serverCheckInOutModal .modal-header {
+  padding-bottom: 0px;
+}
+
+#serverCheckInOutModal .modal {
+  top: 25%;
+  left: 17%;
+  /*background-color: #1f2025;
+  border: none !important;*/
+}
+
+.primary-btn:hover {
+  cursor: pointer;
+}
+
+/*.lblColor {
+  color: #ececec;
+}*/
+
+#staffInfiLi a:hover {
+  cursor: pointer;
+}
+
+/*.h4 {
+  color: white;
+}*/
+
+.switch {
+  position: relative !important;
+  display: inline-block !important;
+  left: 5.4em !important;
+  top: 0.5em !important;
+  width: 36px !important;
+  height: 15px !important;
+}
+
+.modal-content {
+  background-color: black !important;
+}
+
+.modalBgColoor {
+  /*background-color: #424242 !important;*/
+  padding: 3% !important;
+  width: 100% !important;
+}
+
+/*.color {
+  color: red !important;
+}*/
+
+.modal-contentstyle {
+  position: relative;
+  top: 100px;
+}

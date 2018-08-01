@@ -1,0 +1,10 @@
+.fontFamily {
+  font-family: AvenirNext-Medium;
+}
+/*.inputStyle {
+  background-color: #4F5879;
+  border: 1px solid white;
+}*/
+.disabled {
+  cursor: not-allowed;
+}

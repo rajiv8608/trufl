@@ -1,0 +1,193 @@
+<form novalidate #form="ngForm" (ngSubmit)="form.valid && savenext()">
+    <!--header-->
+    <div class="customheader">
+        <div class="customheaderleft">
+            <h2>Other Settings</h2>
+        </div>
+        <div class="customheaderright">
+            <a class="secondary-btn" (click)="cancel()">
+                Cancel
+            </a>
+            <button class="primary-btn" type="submit">
+                Save And Close
+            </button>
+        </div>
+    </div>
+    <!-- main div for showing othersettings details-->
+    <div class="col-md-12 newguestmain mrgTop6em" *ngFor="let _othersettingsdetails of  getothersettingsinfo;">
+        <h3> Dining Experience</h3>
+        <div class="col-md-6">
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="dining" id="input-1"
+                       [(ngModel)]="_othersettingsdetails.DiningTime"
+                       (ngModelChange)="update(_othersettingsdetails.DiningTime, index)"
+                       [ngClass]="dining.invalid && (dining.dirty || dining.touched || form.submitted) ? 'border_change': 'border_default'"
+                       #dining="ngModel" pattern="[0-9]{2,}" required minlength="2">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Length of average Dinner Service(in minutes)</span>
+                </label>
+                <label *ngIf="dining.invalid && (dining.dirty || dining.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="dining.errors.required" [ngStyle]="{'color': 'red'}">
+                        DiningTime Is Required.
+                    </label>
+                    <label *ngIf="dining.errors.minlength" [ngStyle]="{'color': 'red'}">
+                        DiningTime Must Be At Least 2 Characters Long
+                    </label>
+                    <label *ngIf="dining.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        DiningExperience In Minutes Only
+                    </label>
+                </label>
+                <span *ngIf="dining.invalid &&(dining.dirty || dining.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+
+
+            </div>
+        </div>
+
+        <br style="clear:both;" />
+        <h3>Waitlist & Get Seated Now</h3>
+        <div class="col-md-6">
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="waitlist"
+                       [(ngModel)]="_othersettingsdetails.Geofence" id="waitlist" #waitlist="ngModel"
+                       (ngModelChange)="update(_othersettingsdetails.Geofence, index)"
+                       [ngClass]="waitlist.invalid && (waitlist.dirty || waitlist.touched || form.submitted) ? 'border_change': 'border_default'"
+                       pattern="^[0-9]{1,}$" required minlength="1">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Geofence(in miles)</span>
+                </label>
+                <label *ngIf="waitlist.invalid && (waitlist.dirty || waitlist.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="waitlist.errors.required" [ngStyle]="{'color': 'red'}">
+                        Geofence Is Required.
+                    </label>
+                    <label *ngIf="waitlist.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Geofence Should Be Number Only
+                    </label>
+
+                </label>
+                <span *ngIf="waitlist.invalid &&(waitlist.dirty || waitlist.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+
+            </div>
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="capacity"
+                       [(ngModel)]="_othersettingsdetails.TableNowCapacity" id="capacity" #capacity="ngModel"
+                       (ngModelChange)="update(_othersettingsdetails.TableNowCapacity, index)"
+                       pattern="^([1-9]\d?)?$" required minlength="1" maxlength="2"
+                       [ngClass]="capacity.invalid && (capacity.dirty || capacity.touched || form.submitted ) ? 'border_change': 'border_default'">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Default Get A Table Now</span>
+                </label>
+                <label *ngIf="capacity.invalid && (capacity.dirty || capacity.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="capacity.errors.required" [ngStyle]="{'color': 'red'}">
+                        Capacity Is Required.
+                    </label>
+                    <label *ngIf="capacity.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Capacity Should Be Number Only && Should Not Start With Zero
+                    </label>
+
+                </label>
+
+                <span  *ngIf="capacity.invalid &&(capacity.dirty || capacity.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+            </div>
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="price"
+                       [(ngModel)]="_othersettingsdetails.DefaultTableNowPrice" id="price" #price="ngModel" pattern="^[0-9]{2,}$"
+                       required minlength="2"
+                       (ngModelChange)="update(_othersettingsdetails.DefaultTableNowPrice, index)"
+                       [ngClass]="price.invalid && (price.dirty || price.touched || form.submitted) ? 'border_change': 'border_default'">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Default(suggested) Get A Table Now Price per Guest(in USD)</span>
+                </label>
+                <label *ngIf="price.invalid && (price.dirty || price.touched || form.submitted)" [ngStyle]="{'color': 'red'}" class="error_class">
+                    <label *ngIf="price.errors.required" [ngStyle]="{'color': 'red'}">
+                        Price Is Required.
+                    </label>
+                    <label *ngIf="price.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Price Should Be Number Only
+                    </label>
+
+                </label>
+                <span *ngIf="price.invalid &&(price.dirty || price.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+
+            </div>
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="minimumtime"
+                       [(ngModel)]="_othersettingsdetails.MinimumTableNowPrice" id="minimumtime" #minimumtime="ngModel"
+                       pattern="^[0-9]{1,}$" required minlength="1"
+                       (ngModelChange)="update(_othersettingsdetails.MinimumTableNowPrice, index)"
+                       [ngClass]="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched || form.submitted) ? 'border_change': 'border_default'">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Minimum Get A Table Now Price per Guest(in USD)</span>
+                </label>
+                <label *ngIf="minimumtime.invalid && (minimumtime.dirty || minimumtime.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="minimumtime.errors.required" [ngStyle]="{'color': 'red'}">
+                        Minimum Price Is Required.
+                    </label>
+                    <label *ngIf="minimumtime.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Minimum Price Should Be Number Only
+                    </label>
+
+                </label>
+                <span *ngIf="minimumtime.invalid &&(minimumtime.dirty || minimumtime.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+
+            </div>
+
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki" type="text" name="message" id="message"
+                       [(ngModel)]="_othersettingsdetails.RestaurantNotificationMsg" required pattern="^[a-z A-Z]*$" #message="ngModel"
+                       (ngModelChange)="updateMessage(_othersettingsdetails.RestaurantNotificationMsg, index)" [ngClass]="message.invalid  && ( message.dirty || message.touched || form.submitted)? 'border_change': 'border_default'" />
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content input__label-content--haruki error-input">Default Push Notification Message</span>
+                </label>
+                <label *ngIf="message.errors && (message.dirty || message.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="message.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Push Notification Message Should Be Alphabets Only
+                    </label>
+                    <label *ngIf="message.errors.required" [ngStyle]="{'color': 'red'}" >
+                        Push Notification Message required.
+                    </label>
+                </label>
+                <span *ngIf="message.errors && (message.dirty || message.touched || form.submitted)"  id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+            </div>
+
+            <div class="input input--haruki">
+                <input class="input__field input__field--haruki border_default" type="text" name="maxGuests" required #maxGuests ="ngModel" pattern="^[0-9]+$" 
+                       [(ngModel)]="_othersettingsdetails.MaximumGuests"
+                       (ngModelChange)="update(_othersettingsdetails.MaximumGuests, index)" [ngClass]="maxGuests.invalid  && (maxGuests.dirty || maxGuests.touched || form.submitted)? 'border_change': 'border_default'">
+                <label class="input__label input__label--haruki" for="input-1">
+                    <span class="input__label-content--haruki error-input">Maximum Guest</span>
+                </label>
+                <label *ngIf="maxGuests.errors && (maxGuests.dirty || maxGuests.touched || form.submitted)" [ngStyle]="{'color': 'red'}"
+                       class="error_class">
+                    <label *ngIf="maxGuests.errors.pattern" [ngStyle]="{'color': 'red'}">
+                        Maximum Guest Should Be Numbers Only
+                    </label>
+                    <label *ngIf="maxGuests.errors.required" [ngStyle]="{'color': 'red'}">
+                        Maximum Guest required.
+                    </label>
+                </label>
+                <span *ngIf="maxGuests.errors && (maxGuests.dirty || maxGuests.touched || form.submitted)" id="image_id">
+                    <img src="assets/images/error.jpg">
+                </span>
+            </div>
+
+
+        </div>
+    </div>
+    </form>

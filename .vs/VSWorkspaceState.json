@@ -1,0 +1,13 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\addguest",
+    "\\src\\app\\EditGuest",
+    "\\src\\app\\Hostess",
+    "\\src\\assets"
+  ],
+  "SelectedNode": "\\src\\app\\Hostess\\hostess.component.ts",
+  "PreviewInSolutionExplorer": false
+}

@@ -1,0 +1,22 @@
+﻿.h4 {
+  color: white;
+}
+
+.opacity05 {
+  opacity: 0.5;
+}
+
+.mrgTop3em {
+  margin-top: 2em;
+}
+
+.selectstaff ul li a:hover {
+  cursor: default !important;
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1024px) {
+  .mrgTop3em {
+    margin-top: 3em;
+  }
+}
+

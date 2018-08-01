@@ -1,0 +1,124 @@
+<!--header-->
+<div class="customheader">
+  <div class="customheaderleft">
+    <h2>Manage Servers</h2>
+  </div>
+  <div class="customheaderright">
+    <a class="secondary-btn" (click)="cancel()">
+      Cancel
+    </a>
+    <a class="primary-btn" (click)="saveclose()">
+      Save and Close
+    </a>
+  </div>
+</div>
+<!-- main div for manage servers details-->
+<div class="col-md-12 mrgTop8em">
+
+  <div class="col-md-12 selectstaff ">
+    <ul class="padlft">
+      <li *ngFor="let _manageserver of result">
+        <a class="selected" (click)="showProfile(_manageserver, _manageserver.seatNumbers, i)">
+          <img src="data:image/JPEG;base64,{{_manageserver.pic}}" alt=""
+               [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''"/>
+          <span class="imm fontStyle" [ngClass]="_manageserver.ActiveInd == '0' ? 'blur' : ''">
+                        {{_manageserver.FullName}}
+                    </span>
+          <span *ngFor="let obj of _manageserver.seatNumbers;let i=index;">
+             <span *ngIf="_manageserver.ActiveInd == 1 && (obj.StartTableNumber != obj.EndTableNumber)" class="h4">
+                                                       {{test(obj.StartTableNumber) ? obj.StartTableNumber + '-' : ''}}{{test(obj.EndTableNumber) ? obj.EndTableNumber: ''}},</span>
+             <span *ngIf="obj.StartTableNumber == obj.EndTableNumber" class="h4">
+               {{obj.StartTableNumber}}
+             </span>
+          </span>
+        </a>
+      </li>
+    </ul>
+  </div>
+  <!-- user pofile sidenav-->
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="isShow">
+    <img src="assets/images/cross.png" class="closeIconStyle" id="close" (click)="closeProfile()"/>
+    <div class="slidetop">
+      <img alt="" src="data:image/JPEG;base64,{{currentRowInfo.pic}}"/>
+      <h5 class="name">{{currentRowInfo.FullName}}</h5>
+    </div>
+
+    <div class="slideformmain">
+      <div class="slidetoggle">
+        <label>ClockIn / ClockOff</label>
+        <label class="switch">
+          <input type="checkbox" [(ngModel)]="currentRowInfo.checked"
+                 (ngModelChange)="updateServerStatus(currentRowInfo.checked, index)" (click)="openModal(template)">
+          <span class="slider round"></span>
+        </label>
+      </div>
+      <div *ngFor="let item of arr; let index = index">
+        <div class="slideform">
+          <label>{{item.labelName1}} </label> <input name="item.name" type="text" [(ngModel)]="item.StartTableNumber"
+                                                     (ngModelChange)="updateStartTableNumber(item.StartTableNumber, index)"
+                                                     id="starttabnum" #starttabnum="ngModel" pattern="^[0-9]{1,}$"
+                                                     required minlength="1"/>
+          <label *ngIf="starttabnum.invalid && (starttabnum.dirty || starttabnum.touched)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="starttabnum.errors.required" class="color">
+              StartTableNumber Is Required.
+            </label>
+            <label *ngIf="starttabnum.errors.pattern" class="color">
+              StartTableNumber Should Be Number Only
+            </label>
+          </label>
+        </div>
+        <div class="slideform">
+          <label>{{item.labelName2}} </label> <input name="item.name" type="text" [(ngModel)]="item.EndTableNumber"
+                                                     (ngModelChange)="updateEndTableNumber(item.EndTableNumber, index)"
+                                                     id="endtabnum" #endtabnum="ngModel" pattern="^[0-9]{1,}$" required
+                                                     minlength="1"/>
+          <label *ngIf="endtabnum.invalid && (endtabnum.dirty || endtabnum.touched)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="endtabnum.errors.required" class="color">
+              EndTableNumber Is Required.
+            </label>
+            <label *ngIf="endtabnum.errors.pattern" class="color">
+              EndTableNumber Should Be Number Only
+            </label>
+          </label>
+        </div>
+      </div>
+      <label *ngIf="flag" [ngStyle]="{'color': 'red'}">
+        {{message}}
+      </label>
+      <div class="slideform"><a (click)="addMore()">+ Add More </a></div>
+    </div>
+  </div>
+</div>
+
+<!--Server Check In/Out Modal-->
+<ng-template #template class="modal fade">
+
+  <div style="border: none !important">
+
+    <div id="serverCheckInOutModal">
+      <!-- Modal content-->
+      <div class="modal-content modal-contentstyle modalBgColoor fontColor">
+        <div class="modal-header">
+          <button type="button" class="close" (click)="modalClose()">&times;</button>
+          <h4 class="modal-title">Clock <span></span> Out?</h4>
+        </div>
+        <div class="modal-body">
+          <p>Would you like to assign this section to another server?</p>
+          <div>
+            <label style="color:#ececec">Select Servers</label><br/>
+            <select [(ngModel)]="trufluid" (ngModelChange)="toNumber()">
+              <option *ngFor="let _manageserver of manageserverdetails" [ngValue]="_manageserver.TruflUserID">
+                {{_manageserver.FullName}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="primary-btn canBtn pull-right" (click)="modalSubmit()">SUBMIT</button>
+          <button type="button" class="secondary-btn yesBtn pull-right" (click)="modalClose()">CLOSE</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
+

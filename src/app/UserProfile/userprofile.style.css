@@ -1,0 +1,45 @@
+#refinedUser .customheaderright p {
+  font-family: AvenirNextCondensed !important;
+  font-size: 22px;
+  color: #BABABA;
+  text-transform: uppercase;
+  margin-right: 25px;
+  margin-top: 10px;
+}
+
+#refinedUser .table {
+  font-size: 22px;
+}
+
+  #refinedUser .table td {
+    vertical-align: middle;
+    border-top: none !important;
+    border-bottom: 1px solid #BABABA;
+  }
+
+  #refinedUser .table tr td.nOFontStyle, #refinedUser .table tr td.goldFontStyle {
+    font-family: 'RobotoSlab-Regular' !important;
+    color: #C19C59;
+  }
+
+  #refinedUser .table tr td.nOFontStyle {
+    font-size: 72px;
+  }
+
+  #refinedUser .table tr td.goldFontStyle {
+    font-size: 36px;
+    padding: 25px;
+  }
+
+#refinedUser .bottombuttons .spancloseIconStyle {
+  font-family: AvenirNextCondensed;
+  font-size: 22px;
+  color: #f7f7f7;
+  text-transform: uppercase;
+  margin-right: 4em;
+  float: right;
+}
+
+  #refinedUser .bottombuttons .spancloseIconStyle img {
+    margin-right:3px;
+  }

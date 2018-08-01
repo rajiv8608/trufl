@@ -1,0 +1,227 @@
+<div>
+  <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+    <div class="customheader">
+
+      <div class="customheaderleft">
+        <h2>Add A New Guest</h2>
+      </div>
+      <div class="customheaderright">
+        <button type="submit" (click)="get(1)" class="secondary-btn">
+          Add to Waitlist
+        </button>
+        <button type="submit" (click)="get(2)" class="primary-btn">
+          Seat Immediately
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12 newguestmain mrgTop8em">
+      <div class="col-md-6">
+        <div class="input input--haruki"> <!--Guest Name-->
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Guest Name *</span>
+          </label>
+          <input class="input__field input__field--haruki error-input addtext" type="text" id="input-1" name="UserName"
+                 [(ngModel)]="data.UserName" #UserName="ngModel"
+                 [ngClass]="UserName.invalid && (UserName.dirty || UserName.touched || UserName.submitted) ? 'highlight': 'previous'"
+                 maxlength="50" pattern="^$|^[A-Za-z0-9]+" required>
+
+          <div class="addGuestErrMsg" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="UserName.errors.required ">Name is required.</label>
+            <label *ngIf="UserName.errors.pattern">Enter only alphanumeric characters</label>
+          </div>
+          <span class="errorIco" *ngIf="UserName.invalid && (UserName.dirty || UserName.touched || form.submitted)">
+            <img src="assets/images/error.jpg" />
+          </span>
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-2">
+            <span class="add">Email Address</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-2" name="email"
+                 [(ngModel)]="data.email" (input)="change($event)" #email="ngModel"
+                 pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="50"
+                 [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
+
+          <div class="addGuestErrMsg" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)" [ngStyle]="{'color': 'red'}">
+            <label *ngIf="email.errors.pattern">
+              Please enter a valid email address
+            </label>
+          </div>
+          <span class="errorIco" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
+            <img src="assets/images/error.jpg" />
+          </span>
+        </div>
+        <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
+        <div class="input input--haruki">
+            <label class="input__label input__label--haruki" for="input-1">
+                <span class="add">Mobile Number *</span>
+            </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="mobile"
+                 [(ngModel)]="data.mobile" #mobile="ngModel"
+                 [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
+                (keyup)="isNumberKey($event)"   maxlength="20" required>
+
+          <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="mobile.errors.pattern">not allowed</label>
+          </div>
+
+          <div class="addGuestErrMsg" *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="mobile.errors.minlength">
+              please enter morethan 3 digits
+            </label>
+          </div>
+          <div class="addGuestErrMsg" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="mobile.errors.required">
+              mobile number is required.
+            </label>
+
+          </div>
+          <span class="errorIco" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
+            <img src="assets/images/error.jpg" />
+          </span>
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Party size *</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="PartySize"
+                 [(ngModel)]="data.PartySize" #PartySize="ngModel" minlength="1" maxlength="2" pattern="^([1-9]|[1-9][0-9])"
+                 [ngClass]="PartySize.invalid && (PartySize.dirty || PartySize.touched || PartySize.submitted) ? 'highlight': 'previous'"
+                 required>
+
+          <div class="addGuestErrMsg" *ngIf="PartySize.invalid && (PartySize.dirty || PartySize.touched || PartySize.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="PartySize.errors.pattern">
+              Please enter numbers only
+            </label>
+          </div>
+          <div class="addGuestErrMsg" *ngIf="PartySize.invalid &&(PartySize.dirty || PartySize.touched || form.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="PartySize.errors.required">
+              Party Size is required.
+            </label>
+          </div>
+          <span class="errorIco"
+                *ngIf="PartySize.invalid &&(PartySize.dirty || PartySize.touched || form.submitted)">
+            <img src="assets/images/error.jpg" />
+          </span>
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Wait Quoted</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="waitquoted"
+                 [(ngModel)]="data.waitquoted" #waitquoted="ngModel" pattern="[0-9]+" maxlength="3"
+                 [ngClass]="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted) ? 'highlight': 'previous'">
+
+          <div class="addGuestErrMsg" *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="waitquoted.errors.pattern">
+              Please enter numbers only
+            </label>
+          </div>
+        </div>
+
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-2">
+            <span class="add">Date Of Birth </span>
+          </label>
+          <!--<input [max]="getToday()" class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                 [(ngModel)]="data.dateOfBirth">-->
+          <input type="text"[maxDate]="getToday()" class="input__field input__field--haruki addtext previous"  id="input-2" name="DOB"   [(ngModel)]="data.dateOfBirth" bsDatepicker>
+          <div class="addGuestErrMsg" *ngIf="waitquoted.invalid && (waitquoted.dirty || waitquoted.touched || waitquoted.submitted)"
+               [ngStyle]="{'color': 'red'}">
+            <label *ngIf="waitquoted.errors.pattern">
+              Please enter numbers only
+            </label>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-md-6">
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Relatonship</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="relationship"
+                 maxlength="100" [(ngModel)]="data.relationship" [ngClass]="'previous'">
+
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">This Visit</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="visit" maxlength="200"
+                 [(ngModel)]="data.visit" [ngClass]="'previous'">
+
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span>Food & Drink Preferences</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="food" maxlength="200"
+                 [(ngModel)]="data.food" [ngClass]="'previous'">
+
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Seating Preferences</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="seating"
+                 maxlength="200" [(ngModel)]="data.seating" [ngClass]="'previous'">
+
+        </div>
+        <div class="input input--haruki">
+          <label class="input__label input__label--haruki" for="input-1">
+            <span class="add">Notes</span>
+          </label>
+          <input class="input__field input__field--haruki addtext" type="text" id="input-1" name="notes" maxlength="200"
+                 [(ngModel)]="data.notes" [ngClass]="'previous'">
+
+        </div>
+      </div>
+    </div>
+    <div class="col-md-12 bottombuttons">
+      <button type="submit" class="secondary-btn" (click)="get(3)">Make A Reservation</button>
+      <!--<button type="submit" class="primary-btn" (click)="get(4)">Pull Reports</button>-->
+
+      <span class="spancloseIconStyle" (click)="cancel()"><img src="assets/images/cross.png" />  Cancel</span>
+    </div>
+  </form>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

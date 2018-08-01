@@ -1,0 +1,38 @@
+﻿<!--header-->
+<div class="customheader">
+  <div class="customheaderleft">
+    <h2>Select Sections</h2>
+  </div>
+  <div class="customheaderright">
+    <a (click)="back()" class="secondary-btn">
+      Back
+    </a>
+    <a (click)="next()" class="primary-btn">
+      Next
+    </a>
+  </div>
+</div>
+<!--main div-->
+<div class="col-md-12 col-sm-12 mrgTop6em">
+  <div class="row">
+    <div class="col-md-12 col-sm-12 mrgTopBottom56">
+      <span class="servicetext">Tap to close or open sections for tonight's service. </span>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12 col-sm-12 selectfloor">
+      <div class="col-md-10">
+        <ul class="mrgBottom0">
+          <li id="imm" class="col-sm-3" *ngFor="let section of image_changes;let i=index"
+              [ngStyle]="{ 'background-image': 'url('+imageIterate+section.image+')'}" (click)="select(section,i)">
+            <a>
+              <h3 *ngIf="section.IsActive==true">{{section.FloorName}}</h3>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</div>
+

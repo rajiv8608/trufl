@@ -1,0 +1,163 @@
+<!--header-->
+<shared-header></shared-header>
+<!-- main div for displaying seated info-->
+<div class="col-md-12 mrgTop6em">
+  <div class="col-md-12 seatedTbl">
+
+    <div class="col-xs-12 seated-tile-container auto-clear">
+      <div class="col-xs-4" *ngFor="let seatsinfo of sorted_seatedinfo; let i = index">
+        <div class="seated-tile" [ngStyle]="style[seatsinfo.HostessID]">
+          <div class="tile-content">
+            <div class="dblock">
+              <div class="fcol">
+                <h3><a href="javascript:void(0)" class="fontsize18" (click)="seatedUserDetails(seatsinfo,i)">{{seatsinfo.UserName}}</a></h3>
+              </div>
+
+              <div class="rcol">
+                <button (click)="switchtblModal(seatsinfo.TableNumbers,i,template)" data-toggle="modal"
+                        data-target="#switchServerModal" class="switchServerBtn">
+                  Switch Server
+                </button>
+              </div>
+            </div>
+            
+
+            <table class="table" >
+              <tr>
+                <td colspan="2">Trufl Payment: <span *ngIf="seatsinfo.OfferAmount!=null && seatsinfo.OfferAmount !='' && seatsinfo.OfferType != 2">{{seatsinfo.OfferAmount}}</span></td>
+              </tr>
+              <tr>
+                <td>Party Size: <span>{{seatsinfo.PartySize}}</span></td>
+                <td class="alignRight">Table No: <span>{{seatsinfo.TableNumbers}}</span></td>
+              </tr>
+              <tr>
+                <td>Time Seated: <span>{{seatsinfo.TimeSeated}}</span></td>
+                <td class="alignRight">Time Remaining: <span>{{seatsinfo.TimeRemaining}}</span></td>
+              </tr>
+            </table>
+          </div>
+          <div class="tile-actions col-xs-12">
+            <div class="row">
+              <a title="SLOW +5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="slow(seatsinfo,seatsinfo.BookingID)">
+                <span class="icon-trufl-slow"></span>
+                <!--<img class="selected" alt="slow" src="assets/images/slow.png"  (click)="slow(seatsinfo,seatsinfo.BookingID)"/>-->
+              </a>
+              <a title="JUMP -5 MIN" href="javascript:void(0)" class="col-xs-3" (click)="jump(seatsinfo,seatsinfo.BookingID)">
+                <!--<img alt="jump" class="" src="assets/images/jump.png" (click)="jump(seatsinfo,seatsinfo.BookingID)" />-->
+                <span class="icon-trufl-jump"></span>
+              </a>
+              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="!seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+                <!--<img alt="check icon" class="" src="assets/images/check icon.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
+                <span class="icon-trufl-checkdrop"></span>
+              </a>
+              <a title="CHECK DROP" href="javascript:void(0)" class="col-xs-3" *ngIf="seatsinfo.CheckReceived" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)">
+                <!--<img alt="check icon" class="" src="assets/images/check iconb drop.png" (click)="checkDrop(seatsinfo,seatsinfo.BookingID)" />-->
+                <span class="icon-trufl-dropchecked"></span>
+              </a>
+              <a title="EMPTY TABLE" href="javascript:void(0)" class="col-xs-3" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)">
+                <!--<img alt="" class="" src="assets/images/Group-576.png" (click)="emptyTable(seatsinfo,seatsinfo.BookingID)" />-->
+                <span class="icon-trufl-emptytable"></span>
+              </a>
+              <span class="clearfix"></span>
+             
+
+            </div>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!hasData()">No Data Found</div>
+    <!--<div class="addImgDiv">
+      <a class="addImg"><img (click)="navigateToaddGuest()" class="addImgwidth" src="assets/images/bigadd.png" /></a>
+    </div> -->
+  </div>
+
+  <!--User Profile  Right Side-->
+
+  <div class="col-md-2 animated fadeInRight" id="profileSection" *ngIf="showProfile">
+    <div class="divProfileSection">
+      <img src="assets/images/cross.png" class="closeIconStyle" (click)="closeProile()" />
+      <div class="slidetopHostess col-md-12">
+        <img alt="" src="data:image/JPEG;base64,{{pic}}" />
+      </div>
+      <div class="col-md-12 mrgBottom10">
+        <p class="pUsernm"><label>{{username}}</label></p>
+        <p class="pStyles"></p>
+        <p class="pStyles"></p>
+      </div>
+      <div class="col-md-12 clearfix divImgbanner">
+        <span class="ImgBorder">
+          <button disabled><img alt="" src="assets/images/DollerSmall.png" /></button>
+        </span>
+        <span class="ImgBorder">
+          <button disabled>
+            <img src="assets/images/removeSmall.png" />
+          </button>
+        </span>
+        <span class="ImgBorder"><a (click)="editguest()"><img src="assets/images/editSmall.png" /></a></span>
+        <span class="ImgBorder"><a (click)="printrow(data)"><img src="assets/images/Printersmall.png" /></a></span>
+      </div>
+
+      <div class="col-md-12" id="biodata">
+        <div class="slideform">
+          <p class="pBioName">This Visit</p>
+          <p class="pbioDesc">{{data.ThisVisit}}</p>
+
+          <p class="pBioName">Relationship</p>
+          <p class="pbioDesc">{{data.Relationship}}</p>
+
+          <p class="pBioName">Seating Preferences</p>
+          <p class="pbioDesc">{{data.SeatingPreferences}}</p>
+
+          <p class="pBioName">Food & Drink Preferences</p>
+          <p class="pbioDesc">{{data.FoodAndDrinkPreferences}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clearfix"></div>
+
+</div>
+
+<ng-template #template class="modal fade">
+
+  <div id="switchServerModal" [hidden]="ModalpopupShow" (keyup)="dismissmodal()">
+    <!-- Modal content-->
+    <div class="modal-content modalBgColoor fontColor modalwidth">
+      <div class="modal-header">
+        <button type="button" class="close" (click)="dismissmodal()">
+          <!--<img src="assets/images/cancelWhite.png" class="closeIconStyle" />-->
+          <span class="icon-trufl-close closeIconStyle"></span>
+        </button>
+      </div>
+      <div class="modal-body modalBody">
+        <div class="switchUserDiv col-md-12">
+          <div class="col-md-4 padBottom20" *ngFor="let item of ServerDetailsList">
+            <a href="javascript:void(0)" (click)="switchServer(item.TruflUserID)">
+              <img src="data:image/JPEG;base64,{{item.pic}}" alt="" />
+              <h3>
+                {{item.FullName}}
+              </h3>
+            </a>
+          </div>
+          <div class="clearfix"></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</ng-template>
+
+
+<!-- trungetseated component -->
+<!--<turnOngetseated></turnOngetseated>-->
+<!-- custom confirmation box -->
+<common-dialog [(visible)]="showDialog">
+  <div class="pad1em">{{commonmessage}}</div>
+  <div class="btnDiv">
+    <button (click)="Ok()" class="yesBtn">Yes</button>
+    <button (click)="Cancel()" class="canBtn">No</button>
+  </div>
+</common-dialog>

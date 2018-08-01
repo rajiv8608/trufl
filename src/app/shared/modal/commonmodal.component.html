@@ -1,0 +1,12 @@
+<div [@dialog] *ngIf="visible" class="dialog">
+  <div class="dblock">
+    <button *ngIf="closable" (click)="close()" aria-label="Close" class="dialog__close-btn">
+      <img src="assets/images/cross.png" />
+    </button>
+  </div>
+  <div class="dblock">
+    <ng-content></ng-content>
+  </div>
+  
+</div>
+<div *ngIf="visible" class="overlay" (click)="close()"></div>

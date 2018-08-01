@@ -1,0 +1,16 @@
+.loader-hidden {
+  visibility: hidden;
+}
+
+.loader-overlay {
+  position: absolute;
+  width: 100%;
+  top: 40%;
+  left: 1%;
+  opacity: 1;
+  z-index: 500000;
+}
+
+.loderStyle {
+  position: fixed;
+}

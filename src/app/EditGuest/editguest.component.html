@@ -1,0 +1,145 @@
+<div>
+  <form novalidate #form="ngForm" (ngSubmit)="form.valid && onSubmit(form.value,form)">
+    <div class="col-md-12 customheader">
+
+      <div class="customheaderleft">
+        <h2>Edit Guest Bio</h2>
+      </div>
+
+      <div class="customheaderright">
+        <button type="submit" (click)="get(1)" class="secondary-btn">
+          Save and Close
+        </button>
+        <button type="submit" (click)="get(2)" class="primary-btn" [disabled]="showsaveandseataguest"
+                [ngClass]="active==true?'changcolor' : 'default'">
+          Save and Seat Guest
+        </button>
+      </div>
+    </div>
+    <div class="col-md-12 mrgTop8em">
+      <div class="col-md-12 newguestmain">
+        <div class="col-md-6">
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="UserName"
+                   [(ngModel)]="data.UserName" #guest="ngModel"
+                   [ngClass]="guest.invalid && (guest.dirty || guest.touched || guest.submitted)?'highlight':'previous'"
+                   maxlength="50" required>
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input edit">Guest Name *</span>
+            </label>
+            <label *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="guest.errors.required ">
+                name is required.
+              </label>
+            </label>
+            <span style="float:right;" *ngIf="guest.invalid && (guest.dirty || guest.touched || form.submitted)">
+              <img src="assets/images/error.jpg" />
+            </span>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Email"
+                   (input)="change($event)" [(ngModel)]="data.Email" #email="ngModel"
+                   pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}" maxlength="50"
+                   [ngClass]="email.invalid && (email.dirty || email.touched || email.submitted) ? 'highlight': 'previous'">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input edit">Email Address </span>
+            </label>
+            <label *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="email.errors.pattern">
+                please enter avalid email address <i class="material-icons"></i>
+              </label>
+            </label>
+            <span style="float:right;" *ngIf="email.invalid && (email.dirty || email.touched || form.submitted)">
+              <img src="assets/images/error.jpg" />
+            </span>
+          </div>
+
+          <span *ngIf="show_message" [ngStyle]="{'color': 'red'}">{{error_message}}</span>
+
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="PhoneNumber"
+                   [(ngModel)]="data.PhoneNumber" #mobile="ngModel"
+                   [ngClass]="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted) ? 'highlight': 'previous'"
+                   pattern="(?!0+$)[0-9 @!#\$\^%&*()+=\-\[\]]+$" maxlength="20" required>
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki error-input edit">Mobile Number *</span>
+            </label>
+
+            <label *ngIf="mobile.invalid && (mobile.dirty || mobile.touched || mobile.submitted)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="mobile.errors.pattern">
+                not allowed
+              </label>
+            </label>
+
+            <label *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)"
+                   [ngStyle]="{'color': 'red'}">
+              <label *ngIf="mobile.errors.required">
+                mobile number is required.
+              </label>
+            </label>
+            <span style="float:right;" *ngIf="mobile.invalid &&(mobile.dirty || mobile.touched || form.submitted)">
+              <img src="assets/images/error.jpg" />
+            </span>
+          </div>
+
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Relationship"
+                   [(ngModel)]="data.Relationship" [ngClass]="'previous'" maxlength="100">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki edit">Relatonship</span>
+            </label>
+          </div>
+
+          <div class="input input--haruki hidden">
+            <input class="input__field input__field--haruki addtext previous" type="date" id="input-2" name="DOB"
+                   [(ngModel)]="data.dateOfBirth"  [ngClass]="'previous'" />
+            <label class="input__label input__label--haruki" for="input-2">
+              <span class="input__label-content input__label-content--haruki edit">Date Of Birth</span>
+            </label>
+          </div>
+
+        </div>
+        <div class="col-md-6">
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="ThisVisit"
+                   [(ngModel)]="data.ThisVisit" [ngClass]="'previous'" maxlength="200">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki edit">This Visit</span>
+            </label>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1"
+                   name="FoodAndDrinkPreferences" [(ngModel)]="data.FoodAndDrinkPreferences" [ngClass]="'previous'"
+                   maxlength="200">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki edit">Food & Drink Preferences</span>
+            </label>
+          </div>
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="SeatingPreferences"
+                   [(ngModel)]="data.SeatingPreferences" [ngClass]="'previous'" maxlength="200">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki edit">Seating Preferences</span>
+            </label>
+          </div>
+
+          <div class="input input--haruki">
+            <input class="input__field input__field--haruki edittext" type="text" id="input-1" name="Description"
+                   [(ngModel)]="data.Description" [ngClass]="'previous'" maxlength="200">
+            <label class="input__label input__label--haruki" for="input-1">
+              <span class="input__label-content input__label-content--haruki edit">Notes</span>
+            </label>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12 bottombuttons">
+        <button type="submit" id="report" class="primary-btn" (click)="get(3)">Pull Reports</button>
+        <span class="spancloseIconStyle" (click)="EditCancel()"><img src="assets/images/cross.png" />  Cancel</span>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,0 +1,29 @@
+
+.loginbg {
+  background: url(../../assets/images/loginbg.jpg) no-repeat center center;
+  background-size: cover;
+  display: block;
+  width: 100%;
+  height: 100vh;
+}
+
+.errormsg {
+  color: red;
+}
+
+a {
+  cursor: pointer;
+  color: #337ab7;
+  text-decoration: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+.form-group input[type="text"] {
+  width: 100%;
+}
+.login-top h1{
+  color:#000;
+}

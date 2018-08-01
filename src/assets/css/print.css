@@ -1,0 +1,58 @@
+﻿@media print {
+  body {
+    color: black;
+    margin-top: 15%;
+  }
+
+  h1 {
+    font-weight: bold;
+    font-size: 50px;
+    color: goldenrod;
+    margin-left: 40%;
+  }
+
+  table {
+    margin-left: 25%;
+  }
+
+  table th, table td {
+    text-align: left;
+  }
+
+  table tr th {
+    font-family: 'AvenirNextCondensed' !important;
+    font-size: 18px;
+    color: #DEDEDE;
+    padding: 10px;
+    text-transform: uppercase;
+
+  }
+
+  table tr td {
+    width: 25%;
+    border-bottom: none !important;
+    text-transform: uppercase;
+  }
+
+  table tr td:nth-child(4) {
+    font-size: 18px;
+    color: #DEDEDE;
+    font-family: 'AvenirNextCondensed';
+  }
+
+  table tr td:nth-child(5), table tr td:nth-child(6), table tr td:nth-child(7), table tr td:nth-child(8) {
+    font-family: RobotoSlab !important;
+    font-size: 48px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  #eight, #nine, #ten, #eleven {
+    display: none !important;
+  }
+
+  #printrow_8, #printrow_9, #printrow_10, #printrow_11 {
+    display: none !important;
+  }
+
+}

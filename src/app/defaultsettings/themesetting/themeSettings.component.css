@@ -1,0 +1,13 @@
+.themeSetting {
+  display: block;
+  position: relative;
+  top: 140px;
+  left: 40px;
+  width:97vw;
+}
+.themeSetting span{
+  margin-right:20px;
+}
+.themeSetting span:last-child{
+  margin-right:0px;
+}

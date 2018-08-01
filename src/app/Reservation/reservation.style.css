@@ -1,0 +1,421 @@
+﻿
+/*calender styles*/
+body {
+    padding-top: 90px;
+}
+
+.panel-login {
+    border-color: #ccc;
+    -webkit-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    -moz-box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+}
+
+.panel-login > .panel-heading {
+    color: #00415d;
+    background-color: #fff;
+    border-color: #fff;
+    text-align: center;
+}
+
+.panel-login > .panel-heading a {
+    text-decoration: none;
+    color: #666;
+    font-weight: bold;
+    font-size: 15px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login > .panel-heading a.active {
+    color: #029f5b;
+    font-size: 18px;
+}
+.mrgTop5 {
+  margin-top: 5%;
+}
+.widthAuto {
+  width:auto;
+}
+.mrgLeft11em{
+  margin-left:11em;
+}
+.panel-login > .panel-heading hr {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    clear: both;
+    border: 0;
+    height: 1px;
+    background-image: -webkit-linear-gradient(left,rgba(0, 0, 0, 0),rgba(0, 0, 0, 0.15),rgba(0, 0, 0, 0));
+    background-image: -moz-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -ms-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+    background-image: -o-linear-gradient(left,rgba(0,0,0,0),rgba(0,0,0,0.15),rgba(0,0,0,0));
+}
+
+.panel-login input[type="text"], .panel-login input[type="email"], .panel-login input[type="password"] {
+    height: 45px;
+    border: 1px solid #ddd;
+    font-size: 16px;
+    -webkit-transition: all 0.1s linear;
+    -moz-transition: all 0.1s linear;
+    transition: all 0.1s linear;
+}
+
+.panel-login input:hover,
+.panel-login input:focus {
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    border-color: #ccc;
+}
+
+.btn-login {
+    background-color: #59B2E0;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #59B2E6;
+}
+
+    .btn-login:hover,
+    .btn-login:focus {
+        color: #fff;
+        background-color: #53A3CD;
+        border-color: #53A3CD;
+    }
+
+.forgot-password {
+    text-decoration: underline;
+    color: #888;
+}
+
+    .forgot-password:hover,
+    .forgot-password:focus {
+        text-decoration: underline;
+        color: #666;
+    }
+
+.btn-register {
+    background-color: #1CB94E;
+    outline: none;
+    color: #fff;
+    font-size: 14px;
+    height: auto;
+    font-weight: normal;
+    padding: 14px 0;
+    text-transform: uppercase;
+    border-color: #1CB94A;
+}
+
+.btn-register:hover,
+.btn-register:focus {
+    color: #fff;
+    background-color: #1CA347;
+    border-color: #1CA347;
+}
+
+.btnSave {
+  float: right;
+  margin-right: 9%;
+}
+.popup-menu {
+    position: absolute;
+    top: 48px;
+    right: -32px;
+    z-index: 1000;
+}
+
+tn-date-selector {
+    height: 3vh;
+}
+
+.mrgTop5 {
+  margin-top: 5%;
+}
+.menu {
+    position: relative;
+    border-radius: 4px;
+    margin: 22px;
+    padding: 10px;
+    width: 224px;
+    font-size: 14px;
+    text-align: left;
+    background-color:#1f2025;
+    filter: drop-shadow(0 9px 34px rgba(55,57,62,.38));
+    -webkit-filter: drop-shadow(0 9px 34px rgba(55,57,62,.38));
+}
+.widthAuto {
+   width:auto;
+}
+
+.date-select {
+    position: relative;
+
+}
+
+    .date-select select {
+        width: 150px;
+    }
+
+    .date-select input {
+        color: #242936;
+        border-color: #b3bdc7;
+    }
+
+    .date-select.is-disabled {
+        color: #ddd;
+    }
+
+.tn-datepicker-nav-button:focus {
+    outline: 1px solid #2d6997;
+}
+
+.tn-date-selector-popup {
+    position: relative;
+    top: -20px;
+    right: 0px;
+    left: -20px;
+    z-index: 10000;
+}
+
+.tn-date-selector-menu {
+    height: 325px;
+    width: 325px;
+}
+
+.tn-date-selector-menu .caret {
+    top: -8px;
+    left: 26px;
+}
+
+.tn-date-selector-menu .tn-date-selector .tn-datepicker-calender {
+    width: 100%;
+}
+
+.tn-date-selector-menu .error-message {
+    height: 0;
+    color: red;
+    text-align: center;
+    margin: 0;
+}
+
+.tn-date-selector-menu .menu {
+    width: 100%;
+    height: 100%;
+}
+
+.tn-datepicker-day.is-not-in-month {
+    visibility: hidden;
+}
+
+.tn-date-selector-calendar-icon {
+    position: absolute;
+    top: 4px;
+    right: 5px;
+    color: black;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.is-in-month, .month-label {
+    color: #ffffff;
+}
+
+.is-today {
+    border-radius: 50%;
+    background-color: #c19c59;
+    color: #ffffff;
+}
+
+.is-selected-date {
+    color: #ffffff;
+    border-radius: 50%;
+    border: 1px solid #c19c59;
+}
+
+.date-input {
+    border: 1px solid;
+    border-radius: 4px;
+    background: transparent;
+    z-index: 4;
+    position: relative;
+    cursor: pointer;
+}
+
+.date-input .input-box {
+    border: none;
+    border-radius: 0;
+    background: transparent;
+}
+
+.tn-datepicker-day button {
+    background: transparent;
+    border: 0;
+    border-radius: 100%;
+    width: 100%;
+    outline: none;
+    /*color:#ffffff;*/
+}
+.fontStyling {
+  font-family: 'Aniner Next';
+  font-size: 22px;
+  color: #CBCBD1;
+  text-align: center;
+}
+.tn-datepicker {
+    height: auto;
+}
+
+.tn-datepicker-row {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: flex;
+    padding: 2px;
+    width: 100%;
+}
+
+.tn-datepicker-col {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    -moz-flex: 1;
+    -ms-flex: 1;
+    flex: 1;
+    display: block;
+    padding: 2px;
+    width: 100%;
+    position: relative;
+}
+
+.tn-datepicker-title {
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+}
+
+.tn-datepicker-month-label {
+    font-weight: 600;
+    font-size: 14px;
+    text-align: center;
+    width: 150px;
+}
+
+.tn-datepicker-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0 15px;
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.tn-datepicker-nav-button {
+    border-radius: 50%;
+    border:none;
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.tn-datepicker-day-label {
+    color: #ffffff;
+    text-align: center;
+}
+
+.tn-datepicker-day {
+    text-align: center;
+    height: 30px;
+    width: 30px;
+    line-height: 30px;
+    margin-left: 5px;
+}
+
+.tn-datepicker-day.is-not-in-month {
+    color: #A9B2C1;
+}
+
+.tn-datepicker-day.is-overlapping-date {
+    border-radius: 50%;
+    background-color: #65BDEF;
+    color: white;
+    background-image: linear-gradient(90deg, #1178BA 50%, transparent 50%);
+}
+
+.tn-datepicker-footer {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+}
+
+.tn-datepicker-footer span.pay-end-date-payroll-due-date-no-benefit-deductions {
+    position: relative;
+}
+
+.tn-datepicker-footer span:first-child {
+    height: 30px;
+    width: 30px;
+    margin-right: 10px;
+}
+
+.tn-datepicker-footer span:last-child {
+    width: calc(100% - 30px);
+}
+
+
+
+.my-class{
+    color:#dedede;
+}
+.cancelIconStyle span {
+    font-family: AvenirNextCondensed;
+    font-size: 22px;
+    color: #f7f7f7;
+    text-transform: uppercase;
+    margin-left: 0.4em;
+}
+
+.cancelIconStyle {
+    font-size: 10px;
+    color: #969BAE;
+    float: right;
+    font-weight: bold;
+    margin-right: 4.5em;
+}
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+  .mrgLeft11em {
+    margin-left: 7em;
+  }
+}
+.spancloseIconStyle {
+  font-family: AvenirNextCondensed;
+  font-size:22px;
+  color:#f7f7f7;
+  text-transform:uppercase;
+  margin-right: 5em;
+  float: right;
+}
+.spancloseIconStyle img{
+  width: 14px;
+}
+
+.disabled{
+  cursor:default!important;
+}
